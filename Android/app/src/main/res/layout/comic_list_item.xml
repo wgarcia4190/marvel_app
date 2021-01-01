@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="comic"
+			type="com.softcube.marvelapp.domain.model.Comic" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/item_container"
+			android:layout_width="@dimen/comics_width"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/comics_margin"
+			android:background="@color/background800"
+			android:foreground="?attr/selectableItemBackground"
+			app:cardBackgroundColor="@color/background800"
+			app:cardCornerRadius="@dimen/character_card_radius"
+			app:cardElevation="@dimen/character_card_elevation"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:foreground="?attr/selectableItemBackground"
+				android:orientation="vertical"
+				tools:ignore="UnusedAttribute">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/item_poster_post"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:scaleType="center"
+					app:layout_constraintDimensionRatio="H,9:14"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:loadImage="@{comic.thumbnail}"/>
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+		</com.google.android.material.card.MaterialCardView>
+
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

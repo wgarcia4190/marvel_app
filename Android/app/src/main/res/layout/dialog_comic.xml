@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="comic"
+			type="com.softcube.marvelapp.domain.model.Comic" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/dialog_padding"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<com.google.android.material.card.MaterialCardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:foreground="?attr/selectableItemBackground"
+			app:cardBackgroundColor="@color/background"
+			app:cardCornerRadius="@dimen/comic_d_radius"
+			app:cardElevation="@dimen/comic_d_elevation"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:foreground="?attr/selectableItemBackground"
+				android:padding="@dimen/comic_d_padding"
+				tools:ignore="UnusedAttribute">
+
+				<com.google.android.material.card.MaterialCardView
+					android:id="@+id/item_container"
+					android:layout_width="@dimen/comic_d_image_width"
+					android:layout_height="wrap_content"
+					android:background="@color/background800"
+					app:cardBackgroundColor="@color/background800"
+					app:cardCornerRadius="@dimen/comic_d_radius"
+					app:cardElevation="@dimen/comic_d_radius"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent">
+
+					<androidx.constraintlayout.widget.ConstraintLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:foreground="?attr/selectableItemBackground"
+						android:orientation="vertical"
+						tools:ignore="UnusedAttribute">
+
+						<androidx.appcompat.widget.AppCompatImageView
+							android:id="@+id/comic_image"
+							android:layout_width="match_parent"
+							android:layout_height="0dp"
+							android:scaleType="center"
+							app:layout_constraintDimensionRatio="H,9:13"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							app:layout_constraintTop_toTopOf="parent"
+							app:loadImage="@{comic.thumbnail}" />
+
+					</androidx.constraintlayout.widget.ConstraintLayout>
+
+				</com.google.android.material.card.MaterialCardView>
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/comic_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:fontFamily="@font/montserrat_bold"
+					android:gravity="center"
+					android:text="@{comic.title}"
+					android:textSize="@dimen/comic_d_title"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/item_container"
+					tools:text="Iron Man" />
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/comic_description"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/comic_d_subtitle_margin_top"
+					android:ellipsize="end"
+					android:fontFamily="@font/montserrat_light"
+					android:gravity="center"
+					android:maxEms="20"
+					android:maxLines="15"
+					android:text="@{comic.description}"
+					android:textColor="@color/white_87"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/comic_title"
+					tools:text="Iron Man" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+		</com.google.android.material.card.MaterialCardView>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

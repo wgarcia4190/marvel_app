@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Marvel</string>
+	<string name="content_description">Content Description</string>
+
+	<string name="select_character">Select a character</string>
+	<string name="comics">Comics</string>
+	<string name="description">Description</string>
+
+	<!-- Error Strings -->
+	<string name="error_oops_error_occurred">Something went wrong!</string>
+	<string name="invalid_grant">EMAIL OR PASSWORD INVALID</string>
+	<string name="user_locked">YOUR ACCOUNT IS LOCKED</string>
+	<string name="check_again">Please check again!</string>
+</resources>

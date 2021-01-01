@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/background"
+		tools:context=".view.ui.main.MainActivity">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/logo"
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_marginTop="@dimen/logo_margin_top"
+			android:scaleType="fitCenter"
+			android:src="@drawable/marvel"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHeight_default="percent"
+			app:layout_constraintHeight_percent="0.08"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/greeting"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/greeting_margin_top"
+			android:fontFamily="@font/montserrat_bold"
+			android:gravity="center"
+			android:maxLines="1"
+			android:text="@string/select_character"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			android:textColor="@color/white"
+			android:textSize="@dimen/greeting_text"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+		<View
+			android:id="@+id/pointView"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:background="@drawable/triangle"
+			android:rotation="180"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintDimensionRatio="H,1:1.2"
+			app:layout_constraintEnd_toEndOf="parent" />
+
+		<com.yarolegovich.discretescrollview.DiscreteScrollView
+			android:id="@+id/characterList"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/greeting"
+			tools:listitem="@layout/character_list_item"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,126 @@
+plugins {
+	id("com.android.application")
+	id("kotlin-android")
+	id("kotlin-parcelize")
+	id("kotlin-kapt")
+	id("androidx.navigation.safeargs.kotlin")
+}
+
+android {
+	compileSdkVersion rootProject.ext.compileSdk
+	buildToolsVersion rootProject.ext.buildTools
+
+	defaultConfig {
+		applicationId "com.softcube.marvelapp"
+		minSdkVersion rootProject.ext.minSdk
+		targetSdkVersion rootProject.ext.targetSdk
+		versionCode rootProject.ext.versionCodeMajor * 10000 + rootProject.ext.versionCodeMinor * 100 + rootProject.ext.versionCodePatch
+		versionName rootProject.ext.versionName
+
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			shrinkResources false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+			manifestPlaceholders = [crashlyticsEnabled: true]
+
+			buildConfigField "String", 'API_BASE_URL', '"https://gateway.marvel.com:443"'
+			buildConfigField "String", 'PUBLIC_KEY', '"5fad24bd0fb7b70aa5388388c6e305b9"'
+			buildConfigField "String", 'PRIVATE_KEY', '"5dd3686a690d9fe90e3173e23b78374b15adb3ab"'
+		}
+
+		debug {
+			minifyEnabled false
+			versionNameSuffix "-debug"
+			manifestPlaceholders = [crashlyticsEnabled: true]
+			testCoverageEnabled true
+
+			buildConfigField "String", 'API_BASE_URL', '"https://gateway.marvel.com:443"'
+			buildConfigField "String", 'PUBLIC_KEY', '"5fad24bd0fb7b70aa5388388c6e305b9"'
+			buildConfigField "String", 'PRIVATE_KEY', '"5dd3686a690d9fe90e3173e23b78374b15adb3ab"'
+		}
+	}
+
+	sourceSets {
+		main.java.srcDirs += 'src/main/kotlin'
+		test.java.srcDirs += 'src/test/kotlin'
+		androidTest.java.srcDirs += 'src/androidTest/kotlin'
+	}
+
+	testOptions.unitTests {
+		includeAndroidResources = true
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	kotlinOptions {
+		jvmTarget = JavaVersion.VERSION_1_8.toString()
+	}
+
+	buildFeatures {
+		viewBinding true
+		dataBinding true
+	}
+}
+
+dependencies {
+
+	//Jetpack
+	implementation rootProject.ext.appDependencies.appCompat
+	implementation rootProject.ext.appDependencies.androidxKtx
+	implementation rootProject.ext.appDependencies.constraintLayout
+	implementation rootProject.ext.appDependencies.fragmentKtx
+	implementation rootProject.ext.appDependencies.lifecycleExtensions
+	implementation rootProject.ext.appDependencies.navFragment
+	implementation rootProject.ext.appDependencies.navUIKtx
+	implementation rootProject.ext.appDependencies.lifecycleCommons
+
+	//Material
+	implementation rootProject.ext.appDependencies.material
+
+	//UI
+	implementation rootProject.ext.appDependencies.discreteScrollview
+	implementation rootProject.ext.appDependencies.glide
+	kapt rootProject.ext.appDependencies.glideCompiler
+
+	//Memory leaks
+	debugImplementation rootProject.ext.appDependencies.leakCanary
+
+	// Koin
+	implementation rootProject.ext.appDependencies.koinAndroid
+	implementation rootProject.ext.appDependencies.koinAndroidViewModel
+
+	//Data
+	implementation rootProject.ext.dataDependencies.retrofit
+	implementation rootProject.ext.dataDependencies.gsonConverter
+	implementation rootProject.ext.dataDependencies.loggingInterceptor
+
+	//Test Libs
+	testImplementation rootProject.ext.testDependencies.junit
+	testImplementation rootProject.ext.testDependencies.robolectric
+	testImplementation rootProject.ext.testDependencies.androidxJunit
+	testImplementation rootProject.ext.testDependencies.googleTruth
+	testImplementation rootProject.ext.testDependencies.coroutinesTest
+	testImplementation rootProject.ext.testDependencies.koinTest
+	testImplementation rootProject.ext.testDependencies.archComponentTest
+	androidTestImplementation rootProject.ext.testDependencies.androidxJunit
+	androidTestImplementation rootProject.ext.testDependencies.koinTest
+}
+
+apply from: "../ktlint.gradle"
+
+/*
+
+junit                 : "junit:junit:$junitVersion",
+			androidxJunit         : "androidx.test.ext:junit:$androidxJunitVersion",
+			googleTruth           : "com.google.truth:truth:$truthVersion",
+			coroutinesTest        : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesCoreVersion",
+			koinTest              : "org.koin:koin-test:$koinVersion",
+			robolectric           : "org.robolectric:robolectric:$robolectricVersion",
+ */
